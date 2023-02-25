@@ -1,19 +1,16 @@
-// Hacer accesible variables de entorno declaradas en el archivo ".env"
 require('dotenv').config();
+const express = require('express');
+const app = express();
+const port = +process.env.API_PORT;
 
-console.log(process.env.API_PORT);
+app.get('/', (req, res) => {
+    res.send('Hello World!');
+});
 
-console.log(process.env.DB_ENGINE);
-console.log(process.env.DB_NAME);
-console.log(process.env.DB_USER);
-console.log(process.env.DB_PASS);
-console.log(process.env.DB_HOST);
-console.log(process.env.DB_PORT);
-console.log(process.env.DB_POOL_MAX);
-console.log(process.env.DB_POOL_MIN);
-console.log(process.env.DB_POOL_ACQUIRE);
-console.log(process.env.DB_POOL_IDLE);
-console.log(process.env.DB_FREEZETABLENAME);
-console.log(process.env.DB_LOGGING);
-console.log(process.env.DB_SCHEMA);
-console.log(process.env.DB_TIMESTAMPS);
+app.get('/saludo', (req, res) => {
+    res.send('Hola Rubi... Ejemplo de otra ruta... :v');
+});
+
+app.listen(port, () => {
+    console.log(`Servidor escuchando en el puerto: ${ port }`);
+});
